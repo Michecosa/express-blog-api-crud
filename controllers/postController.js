@@ -5,7 +5,10 @@ const index = (req, res) => {
   let filteredPosts = posts;
 
   if (tag) {
-    filteredPosts = posts.filter((post) => post.tags.includes(tag));
+    const tagUpper = tag.toUpperCase();
+    filteredPosts = posts.filter((post) =>
+      post.tags.map((tag) => tag.toUpperCase()).includes(tagUpper)
+    );
   }
 
   res.json(filteredPosts);
