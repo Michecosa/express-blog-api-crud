@@ -19,7 +19,19 @@ const update = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  res.send(`Cancellazione del post ${req.params.id}`);
+  const id = Number(req.params.id);
+  const obiettivo = posts.find((post) => post.id === id);
+
+  if (!obiettivo) {
+    return res
+      .status(404)
+      .json({ error: true, message: "Obiettivo non trovato" });
+  }
+
+  posts.splice(posts.indexOf(obiettivo), 1);
+  console.log("Obiettivo rimosso. Nuova lista operativa: ", posts);
+
+  res.status(204).send();
 };
 
 module.exports = {
