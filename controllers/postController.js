@@ -64,19 +64,18 @@ const update = (req, res) => {
   const { title, content, image, tags } = req.body;
 
   if (title !== undefined) post.title = title;
-
   if (content !== undefined) post.content = content;
-
   if (image !== undefined) post.image = image;
 
-  if (tags !== undefined && !Array.isArray(tags)) {
-    return res.status(400).json({
-      error: true,
-      message: "tags deve essere un array",
-    });
+  if (tags !== undefined) {
+    if (!Array.isArray(tags)) {
+      return res.status(400).json({
+        error: true,
+        message: "tags deve essere un array",
+      });
+    }
+    post.tags = tags;
   }
-
-  post.tags = req.body.tags;
 
   return res.json(post);
 };
