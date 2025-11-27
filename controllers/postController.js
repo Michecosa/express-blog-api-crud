@@ -52,7 +52,7 @@ const store = (req, res) => {
 
 const update = (req, res) => {
   const id = Number(req.params.id);
-  const post = posts.find((p) => p.id === id);
+  const post = posts.find((post) => post.id === id);
 
   if (!post) {
     return res.status(404).json({
@@ -61,10 +61,24 @@ const update = (req, res) => {
     });
   }
 
-  console.log(`
-    Ora ti farò vedere il numero a cui stavi pensando: ${id}
-    magiaaaa
-    `);
+  const { title, content, image, tags } = req.body;
+
+  if (title !== undefined) post.title = title;
+
+  if (content !== undefined) post.content = content;
+
+  if (image !== undefined) post.image = image;
+
+  if (tags !== undefined && !Array.isArray(tags)) {
+    return res.status(400).json({
+      error: true,
+      message: "tags deve essere un array",
+    });
+  }
+
+  post.tags = req.body.tags;
+
+  return res.json(post);
 };
 
 const destroy = (req, res) => {
