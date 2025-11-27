@@ -21,7 +21,19 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
-  res.send("Creazione di un nuovo post");
+  const { title, content, image, tags } = req.body;
+
+  const newPost = {
+    id: posts[posts.length - 1].id + 1,
+    title,
+    content,
+    image,
+    tags,
+  };
+
+  posts.push(newPost);
+
+  return res.status(201).json(newPost);
 };
 
 const update = (req, res) => {
