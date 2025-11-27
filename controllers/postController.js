@@ -30,6 +30,13 @@ const store = (req, res) => {
     });
   }
 
+  if (tags && !Array.isArray(tags)) {
+    return res.status(400).json({
+      error: true,
+      message: "tags deve essere un array.",
+    });
+  }
+
   const newPost = {
     id: posts[posts.length - 1].id + 1,
     title,
