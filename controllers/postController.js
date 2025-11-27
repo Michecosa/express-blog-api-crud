@@ -51,7 +51,20 @@ const store = (req, res) => {
 };
 
 const update = (req, res) => {
-  res.send(`Modifica del post ${req.params.id}`);
+  const id = Number(req.params.id);
+  const post = posts.find((p) => p.id === id);
+
+  if (!post) {
+    return res.status(404).json({
+      error: true,
+      message: "Post non trovato",
+    });
+  }
+
+  console.log(`
+    Ora ti farò vedere il numero a cui stavi pensando: ${id}
+    magiaaaa
+    `);
 };
 
 const destroy = (req, res) => {
