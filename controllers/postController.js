@@ -23,6 +23,13 @@ const show = (req, res) => {
 const store = (req, res) => {
   const { title, content, image, tags } = req.body;
 
+  if (!title || !content || !image) {
+    return res.status(400).json({
+      error: true,
+      message: "title, content e image sono obbligatori",
+    });
+  }
+
   const newPost = {
     id: posts[posts.length - 1].id + 1,
     title,
