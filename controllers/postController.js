@@ -38,7 +38,7 @@ const store = (req, res) => {
   }
 
   const newPost = {
-    id: posts[posts.length - 1].id + 1,
+    id: posts.length ? posts[posts.length - 1].id + 1 : 1,
     title,
     content,
     image,
