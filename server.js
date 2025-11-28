@@ -18,6 +18,9 @@ app.get("/bacheca", (req, res) => {
 
 app.use("/posts", postsRouter);
 
+const notFound = require("./middlewares/notFound");
+app.use(notFound);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
