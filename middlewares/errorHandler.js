@@ -1,4 +1,4 @@
-function errorFound(err, req, res, next) {
+function errorHandler(err, req, res, next) {
   console.error(err);
 
   res.status(500).json({
@@ -8,4 +8,4 @@ function errorFound(err, req, res, next) {
   });
 }
 
-module.exports = errorFound;
+module.exports = errorHandler;

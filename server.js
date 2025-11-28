@@ -3,8 +3,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-
 app.use(express.static("public"));
+
 const posts = require("./data/posts");
 const postsRouter = require("./routers/posts");
 
@@ -21,8 +21,8 @@ app.use("/posts", postsRouter);
 const notFound = require("./middlewares/notFound");
 app.use(notFound);
 
-const errorFound = require("./middlewares/errorFound");
-app.use(errorFound);
+const errorHandler = require("./middlewares/errorHandler");
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
