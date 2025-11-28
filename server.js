@@ -19,7 +19,7 @@ app.get("/bacheca", (req, res) => {
 app.use("/posts", postsRouter);
 
 app.get("/errore", (req, res, next) => {
-  next(new Error("superficiali"));
+  throw new Error();
 });
 
 const notFound = require("./middlewares/notFound");
