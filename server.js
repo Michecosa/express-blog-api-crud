@@ -21,6 +21,9 @@ app.use("/posts", postsRouter);
 const notFound = require("./middlewares/notFound");
 app.use(notFound);
 
+const errorFound = require("./middlewares/errorFound");
+app.use(errorFound);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
